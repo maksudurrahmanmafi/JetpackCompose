@@ -1,55 +1,85 @@
 package com.example.jetpackcompose.lacture_2
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 
 @Composable
-fun OutlineTxt() {
-    var text by remember {
-        mutableStateOf("")
+fun MainScreen() {
+    // Column ব্যবহার করে কম্পোনেন্টগুলোকে ওপর-নিচে সাজানো হয়েছে
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+
+        // ১. ইমেইল ইনপুট
+        EmailInputField()
+
+        Spacer(modifier = Modifier.height(16.dp)) // দুটির মাঝে গ্যাপ
+
+        // ২. পাসওয়ার্ড ইনপুট
+        PasswordInputField()
+
     }
+}
 
-    Box(modifier = Modifier.fillMaxSize().background(Color.Transparent), contentAlignment = Alignment.Center){
-        OutlinedTextField(
-            value = text,
-            onValueChange = { valuechange ->
-                text =valuechange
-            },
-            label = {
-                Text("Enter your email")
+@Composable
+fun EmailInputField() {
+    var text by remember { mutableStateOf("") }
 
-
-
-            },
-            placeholder = {
-                Text("mafi@gmail.com")
-            },
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedLabelColor = Color.Black,
-                unfocusedBorderColor = Color.Red,
-                focusedPlaceholderColor = Color.Red,
-                focusedBorderColor = Color.Green
-            )
-
+    OutlinedTextField(
+        value = text,
+        onValueChange = { text = it },
+        label = { Text("Enter your email") },
+        placeholder = { Text("mafi@gmail.com") },
+        modifier = Modifier.fillMaxWidth(), // যাতে ডানে-বামে পুরো জায়গা নেয়
+        colors = OutlinedTextFieldDefaults.colors(
+            focusedLabelColor = Color.Black,
+            unfocusedBorderColor = Color.Red,
+            focusedBorderColor = Color.Green
         )
-    }
+    )
+}
+
+@Composable
+fun PasswordInputField() {
+    var password by rememberSaveable { mutableStateOf("") }
+
+    OutlinedTextField(
+        value = password,
+        onValueChange = { password = it },
+        label = { Text("Enter your password") },
+        placeholder = { Text("3204rusfkjak") },
+        modifier = Modifier.fillMaxWidth(),
+        visualTransformation = PasswordVisualTransformation(),
+        keyboardOptions = KeyboardOptions(
+            keyboardType = KeyboardType.Password
+        ),
+        colors = OutlinedTextFieldDefaults.colors(
+            focusedLabelColor = Color.Red,
+            unfocusedBorderColor = Color.Black,
+            focusedBorderColor = Color.Green,
+            unfocusedLabelColor = Color.Black
+        )
+    )
 }
 
 @Preview(showSystemUi = true)
 @Composable
-fun Show(){
-    OutlineTxt()
+fun Show() {
+    MainScreen()
 }

@@ -7,7 +7,9 @@ import androidx.activity.enableEdgeToEdge
 import com.example.jetpackcompose.lacture_1.greating
 import com.example.jetpackcompose.lacture_1.image
 import com.example.jetpackcompose.lacture_2.ScrollText
+import com.example.jetpackcompose.lacture_2.SelectAbleTxt
 import com.example.jetpackcompose.lacture_2.TextAndTypography
+import com.example.jetpackcompose.lacture_2.fieldButton
 import com.example.jetpackcompose.ui.theme.JetPackcomposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -16,9 +18,13 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             JetPackcomposeTheme {
-                ScrollText()
+//                ScrollText()
+//
+//                TextAndTypography()
 
-                TextAndTypography()
+//                SelectAbleTxt()
+
+                fieldButton()
 
 
 //                greating()
