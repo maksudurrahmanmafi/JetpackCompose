@@ -41,9 +41,11 @@ class MainActivity : ComponentActivity() {
 //                LogInUI()
 
                 // MainActivity তে এইভাবে লিখুন
-                setContent {
-                    AppNavigation()
-                }
+//                setContent {
+//                    AppNavigation()
+//                }
+
+                TaskManager()
             }
         }
     }
