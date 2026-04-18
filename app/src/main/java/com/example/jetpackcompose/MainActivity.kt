@@ -45,7 +45,11 @@ class MainActivity : ComponentActivity() {
 //                    AppNavigation()
 //                }
 
-                TaskManager()
+//                TaskManager()
+
+                setContent{
+                    SimpleNav()
+                }
             }
         }
     }
